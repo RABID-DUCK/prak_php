@@ -1,12 +1,15 @@
-<?php 
-
+<?php
+spl_autoload_register(__NAMESPACE__ .'\ConnClasses::autoloader');
+class ConnClasses{
     function autoloader($class){
-        include 'classes/' .$class . '.php';
+        $path = '/classes/';
+        include $path.$class.'.php';
         realpath('static/css');
     }
-    spl_autoload_register('autoloader');
 
-     function __construct(){
+    function __construct()
+    {
         imageloadfont('fonts/OpenSans.ttf');
         realpath('static/css/bootstrap.css');
     }
+}

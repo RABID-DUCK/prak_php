@@ -1,9 +1,12 @@
 <?php
 class DB{
-    protected static $user = 'root';
-    protected static $pass = '';
-    public function  __construct()
+
+    protected function connection(){
+        $basa = Config::SettingsDeveloper('db');
+        $conn = new PDO("mysql:host={$basa['host']};dbname={$basa['dbname']}", $basa['user'], $basa['password']);
+    }
+    protected function  __construct()
     {
-        $conn = new PDO('mysql:host=localhost;dbname=aspro', DB::$user, DB::$pass);
+        $this->connection();
     }
 }
